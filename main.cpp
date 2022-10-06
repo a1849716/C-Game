@@ -18,3 +18,4 @@ int main()
 }
 //compiler code
 //g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
+//g++ main.cpp -I/Tetris/C-Game/sfml/include/ -o main -L/Tetris/C-Game/sfml/lib -lsfml-graphics -lsfml-window -lsfml-system
