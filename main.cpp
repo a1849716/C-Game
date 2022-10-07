@@ -32,35 +32,11 @@ int main() {
           window.close();
           break;
       }
-      // Key pressed actions
-      // Right key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-        Shape.move(60.0f, 0.0f);
-      }
-      // Left key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-        Shape.move(-60.0f, 0.0f);
-      }
-      // Down key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-        Shape.rotate(90);
-      }
-      // Up key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-        Shape.rotate(-90);
-      }
-      // Enter key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
-        Shape.setPosition(Shape.getPosition().x, WINDOW_HIGHT - Shape.getGlobalBounds().height);
-      }
-      
 
       // drawing and updating the values
       window.clear();
       window.draw(Shape);
       window.display();
-
-      dt = clock.restart().asSeconds();
 
       // Left screen collision
       if (Shape.getPosition().x < 0) {
