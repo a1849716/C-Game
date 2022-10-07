@@ -6,7 +6,7 @@ using namespace std;
 
 
 int main() {
-    const int WINDOW_WIDTH = 600;
+    const int WINDOW_WIDTH = 1200;
     const int WINDOW_HIGHT = 1200;
   // Make window with size 600 x 1200 for play size, additional info will
   // require more space which will be added on later
