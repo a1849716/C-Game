@@ -10,7 +10,7 @@ int main() {
     const int WINDOW_HIGHT = 1200;
   // Make window with size 600 x 1200 for play size, additional info will
   // require more space which will be added on later
-  RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "SCUFFED TETRIS",
+  RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "BLOCK PUZZLE",
                       Style::Close | Style::Titlebar);
   window.setFramerateLimit(60);
   float gridSize = 60.0;
