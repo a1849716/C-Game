@@ -1,5 +1,7 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
+#include "SFML/Window.hpp"
+#include "SFML/System.hpp"
 
 using namespace sf;
 using namespace std;
@@ -13,6 +15,7 @@ int main() {
   RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "BLOCK PUZZLE",
                       Style::Close | Style::Titlebar);
   window.setFramerateLimit(60);
+  window.
   float gridSize = 60.0;
   RectangleShape Shape(Vector2f(gridSize - 2, (gridSize * 2) - 2));
   Shape.setFillColor(Color::Cyan);
