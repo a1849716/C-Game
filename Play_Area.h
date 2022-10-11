@@ -4,9 +4,10 @@
 
 class Play_Area {
  private:
-  char** area;
+  const int gridSize;
   bool game_status;
   int filled_rows;
+  int score;
 
  public:
   int set_status();
