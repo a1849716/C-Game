@@ -12,8 +12,7 @@ class Teromino{
 
   public:
   
-}
-
+};
 
 
 
