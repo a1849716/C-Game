@@ -1,6 +1,10 @@
 #include "Play_Area.h"
 #include "Tetromino.h"
+#include "SFML/Graphics.hpp"
+#include "SFML/System.hpp"
+#include "SFML/Window.hpp"
 #include <string>
+using namespace sf;
 using namespace std;
 
 Play_Area::Play_Area(){
@@ -8,6 +12,10 @@ Play_Area::Play_Area(){
   game_status = false;
   filled_rows = 0;
   score = 0;
+}
+
+void make_game_area(){
+
 }
 
 int set_status(bool gameStatus){
