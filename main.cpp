@@ -39,7 +39,7 @@ int main() {
   // make table of grids
   const int tableSize = 10;
   RectangleShape tableTile[tableSize][tableSize];
-
+  int isFilled[tableSize][tableSize];
   for (int x = 0; x < tableSize; x++) {
     for (int y = 0; y < tableSize; y++) {
       tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
@@ -47,6 +47,7 @@ int main() {
       tableTile[x][y].setOutlineThickness(1.f);
       tableTile[x][y].setOutlineColor(Color::White);
       tableTile[x][y].setPosition(x * gridSize + 300, y * gridSize + 300);
+      isFilled[x][y] = 0;
     }
   }
   RectangleShape tileSelector(Vector2f(gridSize, gridSize));
@@ -111,5 +112,8 @@ int main() {
   return 0;
 }
 // compiler code
+
 // g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
 // g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_2/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_2/lib -lsfml-graphics -lsfml-window -lsfml-system
+
+// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
