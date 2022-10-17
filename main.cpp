@@ -16,7 +16,9 @@ int main() {
   float gridSize = 60.f;
   float dt = 0.f;
   Clock dtClock;
-
+  int WINDOW_HIGHT = 1200;
+  int WINDOW_WIDTH = 1200;
+  
   // start of game loop
   while (window.isOpen()) {
     // updating dt

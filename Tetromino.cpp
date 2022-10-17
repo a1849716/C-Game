@@ -1,9 +1,11 @@
 #include "Tetromino.h"
 
 #include <iostream>
+#include<cstdlib>
 using namespace std;
 
 Tetromino::Tetromino() {
+  //generate all blocks
   int block1by1_tetromino[1][1] = {1};
 
   int block2by1_tetromino[2][1] = {{1}, {1}};
@@ -33,4 +35,29 @@ Tetromino::Tetromino() {
   int block3by3L_tetromino[3][3] = {{1, 0, 0}, {1, 0, 0}, {1, 1, 1}};
 
   int blockback3by3L_tetromino[3][3] = {{1, 1, 1}, {0, 0, 1}, {0, 0, 1}};
+
+
+  //setting the current shape
+  int *curr_shape = *block1by1_tetromino;
 }
+
+int Tetromino::generate_Block(){
+  int randNum = rand() % 15 +1;
+  int height = 0;
+  int width = 0;
+  switch (randNum){
+    case 1:
+      height = 1;
+      width = 1;
+      *curr_shape = new int[height];
+      for (int r = 0; r < height; r++){
+        for (int c = 0; c < width; c++){
+          curr_shape[r] = block1by1_tetromino[r][c];
+        }
+      }
+  }
+};
+
+int Tetromino::get_tetromino(){
+  return *curr_shape;
+};

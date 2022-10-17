@@ -4,7 +4,7 @@
 class Tetromino{
   private:
     //individual blocks
-    int block1by1_tetrominto;
+    int block1by1_tetromino;
     int block2by1_tetromino;
     int block4by1_teromino;
     int block5by1_teromino;
@@ -18,11 +18,14 @@ class Tetromino{
     int blockback2by2L_tetromino;
     int block3by3L_tetromino;
     int blockback3by3L_tetromino;
+    Tetromino *curr_shape;
   public:
     //constructor
     Tetromino();
     //block generator
     int generate_Block();
+    //get curr_shape
+    int get_tetromino();
 };
 
 
