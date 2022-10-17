@@ -16,32 +16,11 @@ int main() {
   float gridSize = 60.f;
   float dt = 0.f;
   Clock dtClock;
-  //init mouse position variables
-  Vector2i mousePosScreen;
-  Vector2i mousePosWindow;
-  Vector2f mousePosView;
-  Vector2u mousePosGrid;
-
-  
 
   // start of game loop
   while (window.isOpen()) {
     // updating dt
     dt = dtClock.restart().asSeconds();
-    // update mouse positions
-    mousePosScreen = Mouse::getPosition();
-    mousePosWindow = Mouse::getPosition(window);
-    mousePosView = window.mapPixelToCoords(mousePosWindow);
-    if (mousePosView.x >= 0.f) {
-      mousePosGrid.x = mousePosView.x / gridSizeU;
-    }
-    if (mousePosView.y >= 0.f) {
-      mousePosGrid.y = mousePosView.y / gridSizeU;
-    }
-
-    // update game elements
-    tileSelector.setPosition(mousePosGrid.x * gridSize,
-                             mousePosGrid.y * gridSize);
     
     //create an Event called evnt  
     Event evnt;
@@ -69,6 +48,7 @@ int main() {
       Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
                         Shape.getPosition().y);
     }
+    
     // drawing and updating the values
     window.clear();
     //draw 10x10 grid
