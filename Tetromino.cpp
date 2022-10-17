@@ -39,11 +39,11 @@ Tetromino::Teromino() {
                                   {1, 1, 1},
                                   {1, 1, 1};
 
-  const int block2by2L_tetromino = {1, 1},
-                                   {0, 1};   
+  const int block2by2L_tetromino = {1, 0},
+                                   {1, 1};   
 
-  const int blockback2by2L_tetromino = {1, 0},
-                                       {1, 1};                                                                 
+  const int blockback2by2L_tetromino = {1, 1},
+                                       {0, 1};                                                                 
 
   const int block3by3L_tetromino = {1, 0, 0},
                                    {1, 0, 0},
