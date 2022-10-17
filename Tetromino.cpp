@@ -38,7 +38,7 @@ Tetromino::Tetromino() {
 
 
   //setting the current shape
-  int *curr_shape = *block1by1_tetromino;
+  int *curr_shape[1] = {1};
 }
 
 int Tetromino::generate_Block(){

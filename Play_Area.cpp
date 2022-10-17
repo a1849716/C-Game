@@ -17,12 +17,29 @@ Play_Area::Play_Area() {
   score = 0;
   for (int r = 0; r < gridSize; r++) {
     for (int c = 0; c < gridSize; c++) {
-      isFilled[r][c] == 0;
+      *(isFilled[r][c]) = 0;
     }
   };
+
+  //window variable
   RenderWindow window(VideoMode(gridSize, gridSize), "BLOCK PUZZLE",
                       Style::Close | Style::Titlebar);
   gridSizeU = static_cast<unsigned>(gridSize);
+  RectangleShape tileSelector(Vector2f(gridSize, gridSize));
+  
+  // make table of grids
+  RectangleShape tableTile[gridSize][gridSize];
+  // setting up grid
+  for (int x = 0; x < gridSize; x++) {
+    for (int y = 0; y < gridSize; y++) {
+      tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
+      tableTile[x][y].setFillColor(Color::Black);
+      tableTile[x][y].setOutlineThickness(1.f);
+      tableTile[x][y].setOutlineColor(Color::White);
+      tableTile[x][y].setPosition(x * gridSize + 300, y * gridSize + 300);
+      isFilled[x][y] = 0;
+    }
+  }
 }
 
 void Play_Area::update_mouse_positions() {
@@ -49,21 +66,9 @@ void Play_Area::make_game_area() {
   // setting the framerate to 60
   window.setFramerateLimit(60);
 
-  // make table of grids
-  RectangleShape tableTile[gridSize][gridSize];
-  // setting up grid
-  for (int x = 0; x < gridSize; x++) {
-    for (int y = 0; y < gridSize; y++) {
-      tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
-      tableTile[x][y].setFillColor(Color::Black);
-      tableTile[x][y].setOutlineThickness(1.f);
-      tableTile[x][y].setOutlineColor(Color::White);
-      tableTile[x][y].setPosition(x * gridSize + 300, y * gridSize + 300);
-      isFilled[x][y] = 0;
-    }
-  }
+
   // making the mouse highlight current grid
-  RectangleShape tileSelector(Vector2f(gridSize, gridSize));
+  
   tileSelector.setFillColor(Color::Transparent);
   tileSelector.setOutlineThickness(1.f);
   tileSelector.setOutlineColor(Color::Cyan);
@@ -116,3 +121,18 @@ void Play_Area::update_mouse_positions() {
     mousePosGrid.y = mousePosView.y / gridSizeU;
   }
 };
+
+void Play_Area::draw_area(){
+    // drawing and updating the values
+  window.clear();
+  //draw 10x10 grid
+  for (int x = 0; x < gridSize; x++) {
+    for (int y = 0; y < gridSize; y++) {
+      window.draw(tableTile[x][y]);
+    }
+  }
+  //draw tileselector
+  window.draw(tileSelector);
+  //display window
+  window.display();
+}

@@ -20,7 +20,7 @@ int main() {
   int WINDOW_WIDTH = 1200;
   
   // start of game loop
-  while (window.isOpen()) {
+  while (Play_Area::window.isOpen()) {
     // updating dt
     dt = dtClock.restart().asSeconds();
     
@@ -31,38 +31,7 @@ int main() {
       if (evnt.type == Event::Closed) window.close();
     }
 
-    // Left screen collision
-    if (Shape.getPosition().x < 0) {
-      Shape.setPosition(0, Shape.getPosition().y);
-    }
-    // Right screen collision
-    if (Shape.getPosition().x + Shape.getGlobalBounds().width > WINDOW_WIDTH) {
-      Shape.setPosition(WINDOW_WIDTH - Shape.getGlobalBounds().width,
-                        Shape.getPosition().y);
-    }
-    // Bottom screen collision
-    if (Shape.getPosition().y + Shape.getGlobalBounds().height > WINDOW_HIGHT) {
-      Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
-                        Shape.getPosition().y);
-    }
-    // Top screen collision
-    if (Shape.getPosition().y + Shape.getGlobalBounds().height < WINDOW_HIGHT) {
-      Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
-                        Shape.getPosition().y);
-    }
-    
-    // drawing and updating the values
-    window.clear();
-    //draw 10x10 grid
-    for (int x = 0; x < tableSize; x++) {
-      for (int y = 0; y < tableSize; y++) {
-        window.draw(tableTile[x][y]);
-      }
-    }
-    //draw tileselector
-    window.draw(tileSelector);
-    //display window
-    window.display();
+
   }
 
   return 0;
