@@ -4,6 +4,7 @@
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
 #include <string>
+#include <iostream>
 using namespace sf;
 using namespace std;
 
@@ -12,20 +13,21 @@ Play_Area::Play_Area(){
   game_status = false;
   filled_rows = 0;
   score = 0;
+  isFilled[gridSize][gridSize];
 }
 
 void make_game_area(){
 
-}
+};
 
-int set_status(bool gameStatus){
+int Play_Area::set_status(bool gameStatus){
   game_status = gameStatus;
 };
-int get_status(){
+int Play_Area::get_status(){
   cout << game_status << endl;
   return game_status;
 };
-int check_rows(){
+int Play_Area::check_rows(){
   //for loop from 1 - 10
   for (int r = 0; r< gridSize; r++){
     //variable to check if add if there is block
@@ -48,7 +50,7 @@ int check_rows(){
     }
   }
 };
-bool check_game_status(){
+bool Play_Area::check_game_status(){
   
 };
-Tetromino create_tetromino();
+Tetromino Play_Area::create_tetromino(){};

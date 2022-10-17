@@ -9,13 +9,14 @@ using namespace sf;
 
 class Play_Area{
  private:
-  const int gridSize;
+  int gridSize;
   bool game_status;
   int filled_rows;
   int score;
+  int isFilled[gridSize][gridSize];
 
  public:
-  int set_status();
+  int set_status(bool gameStatus);
   int get_status();
   int check_rows();
   bool check_game_status();
