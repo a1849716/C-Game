@@ -1,19 +1,23 @@
+//include libraries & headers
 #include <iostream>
-#include <sstream>
-
+#include "Play_Area.h"
+#include "Tetromino.h"
+//include sfml
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
 #include "SFML/Window.hpp"
-
+//namespace sf and std
 using namespace sf;
 using namespace std;
 
+//
 int main() {
   // Init Game
   float gridSize = 60.f;
   unsigned gridSizeU = static_cast<unsigned>(gridSize);
   float dt = 0.f;
   Clock dtClock;
+  //init mouse position variables
   Vector2i mousePosScreen;
   Vector2i mousePosWindow;
   Vector2f mousePosView;
@@ -40,6 +44,7 @@ int main() {
   const int tableSize = 10;
   RectangleShape tableTile[tableSize][tableSize];
   int isFilled[tableSize][tableSize];
+  //setting up grid
   for (int x = 0; x < tableSize; x++) {
     for (int y = 0; y < tableSize; y++) {
       tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
@@ -50,6 +55,7 @@ int main() {
       isFilled[x][y] = 0;
     }
   }
+  //making the mouse highlight current grid
   RectangleShape tileSelector(Vector2f(gridSize, gridSize));
   tileSelector.setFillColor(Color::Transparent);
   tileSelector.setOutlineThickness(1.f);
@@ -69,10 +75,12 @@ int main() {
     if (mousePosView.y >= 0.f) {
       mousePosGrid.y = mousePosView.y / gridSizeU;
     }
+
     // update game elements
     tileSelector.setPosition(mousePosGrid.x * gridSize,
                              mousePosGrid.y * gridSize);
-
+    
+    //create an Event called evnt  
     Event evnt;
     while (window.pollEvent(evnt)) {
       // if the close button is hit
@@ -93,19 +101,22 @@ int main() {
       Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
                         Shape.getPosition().y);
     }
-
+    // Top screen collision
+    if (Shape.getPosition().y + Shape.getGlobalBounds().height < WINDOW_HIGHT) {
+      Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
+                        Shape.getPosition().y);
+    }
     // drawing and updating the values
     window.clear();
-
-    window.draw(Shape);
-
+    //draw 10x10 grid
     for (int x = 0; x < tableSize; x++) {
       for (int y = 0; y < tableSize; y++) {
         window.draw(tableTile[x][y]);
       }
     }
+    //draw tileselector
     window.draw(tileSelector);
-
+    //display window
     window.display();
   }
 
@@ -114,6 +125,5 @@ int main() {
 // compiler code
 
 // g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
+//or
 // g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_2/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_2/lib -lsfml-graphics -lsfml-window -lsfml-system
-
-// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window -lsfml-system
