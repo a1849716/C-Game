@@ -1,5 +1,5 @@
-#ifndef PLAY_AREA_H
-#define PLAY_AREA_H
+#ifndef PLAYAREA_H
+#define PLAYAREA_H
 #include "Tetromino.h"
 #include "SFML/Graphics.hpp"
 #include "SFML/System.hpp"
@@ -7,7 +7,7 @@
 
 using namespace sf;
 
-class Play_Area {
+class Play_Area{
  private:
   const int gridSize;
   bool game_status;
