@@ -14,6 +14,10 @@ class Play_Area{
   int filled_rows;
   int score;
   int isFilled[gridSize][gridSize];
+  Vector2i mousePosScreen;
+  Vector2i mousePosWindow;
+  Vector2f mousePosView;
+  Vector2u mousePosGrid;
 
  public:
   int set_status(bool gameStatus);

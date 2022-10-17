@@ -13,7 +13,7 @@ Play_Area::Play_Area(){
   game_status = false;
   filled_rows = 0;
   score = 0;
-  isFilled[gridSize][gridSize];
+  int isFilled[gridSize][gridSize];
 }
 
 void make_game_area(){
@@ -53,4 +53,4 @@ int Play_Area::check_rows(){
 bool Play_Area::check_game_status(){
   
 };
-Tetromino Play_Area::create_tetromino(){};
+Tetromino Play_Area::create_tetromino();
