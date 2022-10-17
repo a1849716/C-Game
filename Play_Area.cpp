@@ -13,11 +13,44 @@ Play_Area::Play_Area(){
   game_status = false;
   filled_rows = 0;
   score = 0;
-  int isFilled[gridSize][gridSize];
+  for (int r = 0; r < gridSize; r++){
+    for (int c = 0; c < gridSize; c++){
+      isFilled[r][c] == 0;
+    }
+  };
+  RenderWindow window(VideoMode(gridSize, gridSize), "BLOCK PUZZLE",Style::Close | Style::Titlebar);
+  gridSizeU = static_cast<unsigned>(gridSize);
 }
 
-void make_game_area(){
+void Play_Area::make_game_area(){
+// Init Window
+  const int WINDOW_WIDTH = 1200;
+  const int WINDOW_HIGHT = 1200;
+  // Make window with size 1200 x 1200
+  RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "BLOCK PUZZLE",
+                      Style::Close | Style::Titlebar);
 
+  // setting the framerate to 60
+  window.setFramerateLimit(60);
+
+  // make table of grids
+  RectangleShape tableTile[gridSize][gridSize];
+  //setting up grid
+  for (int x = 0; x < gridSize; x++) {
+    for (int y = 0; y < gridSize; y++) {
+      tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
+      tableTile[x][y].setFillColor(Color::Black);
+      tableTile[x][y].setOutlineThickness(1.f);
+      tableTile[x][y].setOutlineColor(Color::White);
+      tableTile[x][y].setPosition(x * gridSize + 300, y * gridSize + 300);
+      isFilled[x][y] = 0;
+    }
+  }
+  //making the mouse highlight current grid
+  RectangleShape tileSelector(Vector2f(gridSize, gridSize));
+  tileSelector.setFillColor(Color::Transparent);
+  tileSelector.setOutlineThickness(1.f);
+  tileSelector.setOutlineColor(Color::Cyan);
 };
 
 int Play_Area::set_status(bool gameStatus){
@@ -53,4 +86,16 @@ int Play_Area::check_rows(){
 bool Play_Area::check_game_status(){
   
 };
-Tetromino Play_Area::create_tetromino();
+Tetromino Play_Area::create_tetromino(){};
+void Play_Area::update_mouse_positions(){
+  // update mouse positions
+    mousePosScreen = Mouse::getPosition();
+    mousePosWindow = Mouse::getPosition(window);
+    mousePosView = window.mapPixelToCoords(mousePosWindow);
+    if (mousePosView.x >= 0.f) {
+      mousePosGrid.x = mousePosView.x / gridSizeU;
+    }
+    if (mousePosView.y >= 0.f) {
+      mousePosGrid.y = mousePosView.y / gridSizeU;
+    }
+};

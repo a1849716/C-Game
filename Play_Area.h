@@ -13,7 +13,9 @@ class Play_Area{
   bool game_status;
   int filled_rows;
   int score;
-  int isFilled[][];
+  int isFilled;
+  unsigned gridSizeU;
+  RenderWindow window;
   Vector2i mousePosScreen;
   Vector2i mousePosWindow;
   Vector2f mousePosView;
@@ -24,6 +26,8 @@ class Play_Area{
   int get_status();
   int check_rows();
   bool check_game_status();
+  void make_game_area();
   Tetromino create_tetromino();
+  void update_mouse_positions();
 };
 #endif

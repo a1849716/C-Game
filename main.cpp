@@ -14,7 +14,6 @@ using namespace std;
 int main() {
   // Init Game
   float gridSize = 60.f;
-  unsigned gridSizeU = static_cast<unsigned>(gridSize);
   float dt = 0.f;
   Clock dtClock;
   //init mouse position variables
@@ -23,43 +22,7 @@ int main() {
   Vector2f mousePosView;
   Vector2u mousePosGrid;
 
-  // Init Window
-  const int WINDOW_WIDTH = 1200;
-  const int WINDOW_HIGHT = 1200;
-  // Make window with size 1200 x 1200
-  RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "BLOCK PUZZLE",
-                      Style::Close | Style::Titlebar);
-
-  // setting the framerate to 60
-  window.setFramerateLimit(60);
-
-  // make shape for testing
-  RectangleShape Shape(Vector2f(gridSize - 2, (gridSize * 2) - 2));
-  Shape.setFillColor(Color::Cyan);
-  Shape.setOutlineThickness(2);
-  Shape.setOutlineColor(Color::Blue);
-  Shape.setPosition(600.f, 600.f);
-
-  // make table of grids
-  const int tableSize = 10;
-  RectangleShape tableTile[tableSize][tableSize];
-  int isFilled[tableSize][tableSize];
-  //setting up grid
-  for (int x = 0; x < tableSize; x++) {
-    for (int y = 0; y < tableSize; y++) {
-      tableTile[x][y].setSize(Vector2f(gridSize, gridSize));
-      tableTile[x][y].setFillColor(Color::Black);
-      tableTile[x][y].setOutlineThickness(1.f);
-      tableTile[x][y].setOutlineColor(Color::White);
-      tableTile[x][y].setPosition(x * gridSize + 300, y * gridSize + 300);
-      isFilled[x][y] = 0;
-    }
-  }
-  //making the mouse highlight current grid
-  RectangleShape tileSelector(Vector2f(gridSize, gridSize));
-  tileSelector.setFillColor(Color::Transparent);
-  tileSelector.setOutlineThickness(1.f);
-  tileSelector.setOutlineColor(Color::Cyan);
+  
 
   // start of game loop
   while (window.isOpen()) {
