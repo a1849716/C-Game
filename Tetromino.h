@@ -3,6 +3,7 @@
 
 class Tetromino{
   private:
+    //individual blocks
     int block1by1_tetrominto;
     int block2by1_tetromino;
     int block4by1_teromino;
@@ -18,7 +19,9 @@ class Tetromino{
     int block3by3L_tetromino;
     int blockback3by3L_tetromino;
   public:
+    //constructor
     Tetromino();
+    //block generator
     int generate_Block();
 };
 
