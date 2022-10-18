@@ -1,6 +1,6 @@
-#include <iostream>
-
 #include "SFML/Graphics.hpp"
+#include <iostream>
+#include "Move.h"
 
 using namespace sf;
 using namespace std;
@@ -18,59 +18,19 @@ int main() {
   Shape.setFillColor(Color::Cyan);
   Shape.setOutlineThickness(2);
   Shape.setOutlineColor(Color::Blue);
+     
 
   Clock clock;
   float dt;
 
-  // make table of grids
-  const int table_height = 10;
-  const int table_width = 20;
-  RectangleShape tableTile[table_height][table_width];
-  int isFilled[table_height][table_width];
-  // setting up grid
-  for (int x = 0; x < table_height; x++) {
-    for (int y = 0; y < table_width; y++) {
-      tableTile[x][y].setSize(Vector2f(60, 60));
-      tableTile[x][y].setFillColor(Color::Black);
-      tableTile[x][y].setOutlineThickness(1.f);
-      tableTile[x][y].setOutlineColor(Color::White);
-      tableTile[x][y].setPosition(x*60, y*60);
-      isFilled[x][y] = 0;
-    }
+  if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
+    Move::move_right();
   }
 
-  // start of game loop
-  while (window.isOpen()) {
-    Event evnt;
-    while (window.pollEvent(evnt)) {
-      switch (evnt.type) {
-        // if the close button is hit
-        case Event::Closed:
-          window.close();
-          break;
-      }
-      // Key pressed actions
-      // Right key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-        Shape.move(60.0f, 0.0f);
-      }
-      // Left key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-        Shape.move(-60.0f, 0.0f);
-      }
-      // Down key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-        Shape.rotate(90);
-      }
-      // Up key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-        Shape.rotate(-90);
-      }
-      // Enter key
-      if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
-        Shape.setPosition(Shape.getPosition().x,
-                          WINDOW_HIGHT - Shape.getGlobalBounds().height);
-      }
+  if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
+    Move::move_left();
+  }
+
 
       // drawing and updating the values
       tableTile[3][3].setFillColor(Color::Cyan);
@@ -92,8 +52,10 @@ int main() {
       }
       // Right screen collision
       if (Shape.getPosition().x + Shape.getGlobalBounds().width >
+         
           WINDOW_WIDTH) {
         Shape.setPosition(WINDOW_WIDTH - Shape.getGlobalBounds().width,
+                         
                           Shape.getPosition().y);
       }
       // Bottom screen collision
@@ -102,12 +64,5 @@ int main() {
         Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
                           Shape.getPosition().y);
       }
-    }
-  }
-
   return 0;
 }
-// compiler code
-// g++ main.cpp -I/opt/homebrew/Cellar/sfml/2.5.1_1/include/ -o main
-// -L/opt/homebrew/Cellar/sfml/2.5.1_1/lib -lsfml-graphics -lsfml-window
-// -lsfml-system

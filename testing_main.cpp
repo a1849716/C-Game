@@ -45,7 +45,7 @@ int main() {
       tableTile[x][y].setFillColor(Color::Transparent);
       tableTile[x][y].setOutlineThickness(1.f);
       tableTile[x][y].setOutlineColor(Color::White);
-      tableTile[x][y].setPosition(x * 60, y * 60);
+      tableTile[x][y].setPosition(y * 60, x * 60);
     }
   }
 
@@ -75,7 +75,7 @@ int main() {
           }
         }
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < rows; i++) {
           for (int j = 0; j < cols; j++) {
             cout << array[i][j];
           }
@@ -98,7 +98,7 @@ int main() {
           }
         }
         
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < rows; i++) {
           for (int j = 0; j < cols; j++) {
             cout << array[i][j];
           }
