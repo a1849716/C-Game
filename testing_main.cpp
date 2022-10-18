@@ -1,4 +1,6 @@
 #include "SFML/Graphics.hpp"
+#include "SFML/System.hpp"
+#include "SFML/Window.hpp"
 #include <iostream>
 
 using namespace sf;
@@ -11,14 +13,10 @@ int main() {
   // require more space which will be added on later
   RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "SCUFFED TETRIS",
                       Style::Close | Style::Titlebar);
-                      
+
   window.setFramerateLimit(60);
   float gridSize = 60.0;
-  RectangleShape Shape(Vector2f(gridSize - 2, (gridSize * 2) - 2));
-  Shape.setFillColor(Color::Cyan);
-  Shape.setOutlineThickness(2);
-  Shape.setOutlineColor(Color::Blue);
-
+  
   Clock clock;
   float dt;
   int array[20][10] = {
@@ -67,7 +65,7 @@ int main() {
       if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
         for (int i = 0; i < rows; i++) {
           for (int j = 0; j < cols; j++) {
-            if (array[i][j] == 1 && array[i + 1][j] && j + 1 < cols) {
+            if (array[i][j] == 1 && array[i + 1][j] == 1 && j + 1 < cols) {
               array[i][j] = 0;
               array[i + 1][j] = 0;
               array[i][j + 1] = 1;
@@ -76,6 +74,7 @@ int main() {
             }
           }
         }
+
         for (int i = 0; i < 3; i++) {
           for (int j = 0; j < cols; j++) {
             cout << array[i][j];
@@ -89,7 +88,7 @@ int main() {
       if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
         for (int i = 0; i < rows; i++) {
           for (int j = 0; j < cols; j++) {
-            if (array[i][j] == 1 && array[i + 1][j] && j > 0) {
+            if (array[i][j] == 1 && array[i + 1][j] == 1 && j > 0) {
               array[i][j] = 0;
               array[i + 1][j] = 0;
               array[i][j - 1] = 1;
@@ -98,6 +97,7 @@ int main() {
             }
           }
         }
+        
         for (int i = 0; i < 3; i++) {
           for (int j = 0; j < cols; j++) {
             cout << array[i][j];
@@ -107,8 +107,8 @@ int main() {
         cout << endl;
       }
 
+      window.clear();
       // drawing and updating the values
-
       for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
           if (array[i][j] == 1) {
@@ -118,7 +118,7 @@ int main() {
           }
         }
       }
-      window.clear();
+
       // draw grid
       for (int x = 0; x < table_height; x++) {
         for (int y = 0; y < table_width; y++) {
