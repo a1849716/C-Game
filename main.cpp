@@ -1,13 +1,13 @@
 #include <iostream>
+
 #include "SFML/Graphics.hpp"
 
 using namespace sf;
 using namespace std;
 
-
 int main() {
-    const int WINDOW_WIDTH = 600;
-    const int WINDOW_HIGHT = 1200;
+  const int WINDOW_WIDTH = 600;
+  const int WINDOW_HIGHT = 1200;
   // Make window with size 600 x 1200 for play size, additional info will
   // require more space which will be added on later
   RenderWindow window(VideoMode(WINDOW_WIDTH, WINDOW_HIGHT), "SCUFFED TETRIS",
@@ -21,6 +21,23 @@ int main() {
 
   Clock clock;
   float dt;
+
+  // make table of grids
+  const int table_height = 10;
+  const int table_width = 20;
+  RectangleShape tableTile[table_height][table_width];
+  int isFilled[table_height][table_width];
+  // setting up grid
+  for (int x = 0; x < table_height; x++) {
+    for (int y = 0; y < table_width; y++) {
+      tableTile[x][y].setSize(Vector2f(60, 60));
+      tableTile[x][y].setFillColor(Color::Black);
+      tableTile[x][y].setOutlineThickness(1.f);
+      tableTile[x][y].setOutlineColor(Color::White);
+      tableTile[x][y].setPosition(x*60, y*60);
+      isFilled[x][y] = 0;
+    }
+  }
 
   // start of game loop
   while (window.isOpen()) {
@@ -51,12 +68,19 @@ int main() {
       }
       // Enter key
       if (Keyboard::isKeyPressed(Keyboard::Key::Enter)) {
-        Shape.setPosition(Shape.getPosition().x, WINDOW_HIGHT - Shape.getGlobalBounds().height);
+        Shape.setPosition(Shape.getPosition().x,
+                          WINDOW_HIGHT - Shape.getGlobalBounds().height);
       }
-      
 
       // drawing and updating the values
+      tableTile[3][3].setFillColor(Color::Cyan);
       window.clear();
+      // draw 10x10 grid
+      for (int x = 0; x < table_height; x++) {
+        for (int y = 0; y < table_width; y++) {
+          window.draw(tableTile[x][y]);
+        }
+      }
       window.draw(Shape);
       window.display();
 
@@ -67,12 +91,16 @@ int main() {
         Shape.setPosition(0, Shape.getPosition().y);
       }
       // Right screen collision
-      if (Shape.getPosition().x + Shape.getGlobalBounds().width > WINDOW_WIDTH) {
-        Shape.setPosition(WINDOW_WIDTH - Shape.getGlobalBounds().width, Shape.getPosition().y);
+      if (Shape.getPosition().x + Shape.getGlobalBounds().width >
+          WINDOW_WIDTH) {
+        Shape.setPosition(WINDOW_WIDTH - Shape.getGlobalBounds().width,
+                          Shape.getPosition().y);
       }
       // Bottom screen collision
-      if (Shape.getPosition().y + Shape.getGlobalBounds().height > WINDOW_HIGHT) {
-        Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height, Shape.getPosition().y);
+      if (Shape.getPosition().y + Shape.getGlobalBounds().height >
+          WINDOW_HIGHT) {
+        Shape.setPosition(WINDOW_HIGHT - Shape.getGlobalBounds().height,
+                          Shape.getPosition().y);
       }
     }
   }
